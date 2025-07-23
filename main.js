@@ -1,45 +1,44 @@
 const displayedImage = document.querySelector('.displayed-img');
 const thumbBar = document.querySelector('.thumb-bar');
-const btn = document.querySelector('button');
+const btn = document.getElementById('toggleMode');
 const overlay = document.querySelector('.overlay');
 
-/* Declaring the array of image filenames */
-const imageFilenames = ['pic1.jpg', 'pic2.jpg', 'pic3.jpg', 'pic4.jpg', 'pic5.jpg'];
-
-/* Declaring the alternative text for each image file */
-const imageAlts = {
+// Image data
+const images = ['pic1.jpg', 'pic2.jpg', 'pic3.jpg', 'pic4.jpg', 'pic5.jpg'];
+const alts = {
   'pic1.jpg': 'Closeup of a human eye',
   'pic2.jpg': 'Rock that looks like a wave',
   'pic3.jpg': 'Purple and white pansies',
-  'pic4.jpg': 'Section of wall from a pharaoh\'s tomb',
+  'pic4.jpg': 'Ancient Egyptian wall art',
   'pic5.jpg': 'Large moth on a leaf'
 };
 
-/* Looping through images */
-for (const filename of imageFilenames) {
-  const newImage = document.createElement('img');
-  newImage.setAttribute('src', `images/${filename}`);
-  newImage.setAttribute('alt', imageAlts[filename]);
-  thumbBar.appendChild(newImage);
+// Populate thumbnail bar
+images.forEach(filename => {
+  const img = document.createElement('img');
+  img.src = `images/${filename}`;
+  img.alt = alts[filename];
+  thumbBar.appendChild(img);
 
-  // Add click event to each thumbnail
-  newImage.addEventListener('click', () => {
-    displayedImage.setAttribute('src', `images/${filename}`);
-    displayedImage.setAttribute('alt', imageAlts[filename]);
+  img.addEventListener('click', () => {
+    displayedImage.src = img.src;
+    displayedImage.alt = img.alt;
   });
-}
+});
 
-/* Wiring up the Darken/Lighten button */
+// Toggle dark/light mode
 btn.addEventListener('click', () => {
-  const currentClass = btn.getAttribute('class');
+  const isDark = btn.classList.contains('dark');
 
-  if (currentClass === 'dark') {
-    btn.setAttribute('class', 'light');
-    btn.textContent = 'Lighten';
-    overlay.style.backgroundColor = 'rgb(0 0 0 / 50%)';
+  if (isDark) {
+    btn.classList.remove('dark');
+    btn.classList.add('light');
+    btn.textContent = 'Light Mode';
+    overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
   } else {
-    btn.setAttribute('class', 'dark');
-    btn.textContent = 'Darken';
-    overlay.style.backgroundColor = 'rgb(0 0 0 / 0%)';
+    btn.classList.remove('light');
+    btn.classList.add('dark');
+    btn.textContent = 'Dark Mode';
+    overlay.style.backgroundColor = 'rgba(0,0,0,0)';
   }
 });
