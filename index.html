@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-
-    <title>Image gallery</title>
-
-    <link rel="stylesheet" href="style.css">
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Image Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="gallery-container">
+    <h1>Photo Showcase</h1>
     
-  </head>
-
-  <body>
-    <h1>Image gallery example</h1>
-
-    <div class="full-img">
-      <img class="displayed-img" src="images/pic1.jpg" alt="Closeup of a human eye">
+    <div class="main-image">
+      <img class="displayed-img" src="images/pic1.jpg" alt="Closeup of a human eye" />
       <div class="overlay"></div>
-      <button class="dark">Darken</button>
+      <button id="toggleMode" class="dark">Dark Mode</button>
     </div>
 
-    <div class="thumb-bar">
+    <div class="thumb-bar"></div>
+  </div>
 
-
-    </div>
-    <script src="main.js"></script>
-  </body>
+  <script src="main.js"></script>
+</body>
 </html>
